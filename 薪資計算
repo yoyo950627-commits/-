@@ -1,0 +1,46 @@
+export default function SalaryCalculator() {
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-xl">
+        <h1 className="text-4xl font-bold text-center mb-8">薪資總額計算器</h1>
+
+        <div className="space-y-6">
+          <SalaryInput id="base" label="基本薪資" />
+          <SalaryInput id="bonus" label="工作獎金" />
+          <SalaryInput id="overtime" label="加班費" />
+        </div>
+
+        <button
+          onClick={() => {
+            const b = parseFloat(document.getElementById('base').value) || 0;
+            const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+            const o = parseFloat(document.getElementById('overtime').value) || 0;
+            document.getElementById('total').innerText = b + bonus + o;
+          }}
+          className="w-full mt-8 bg-green-600 hover:bg-green-700 text-white text-xl font-semibold py-4 rounded-2xl transition"
+        >
+          計算薪資總額
+        </button>
+
+        <div className="mt-8 text-center text-3xl font-bold">
+          薪資總額：<span id="total" className="text-red-600">0</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SalaryInput({ id, label }) {
+  return (
+    <div>
+      <label className="block text-lg font-medium mb-2">{label}</label>
+      <input
+        id={id}
+        type="number"
+        min="0"
+        placeholder={`請輸入${label}`}
+        className="w-full border rounded-xl p-4 text-lg"
+      />
+    </div>
+  );
+}
