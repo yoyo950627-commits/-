@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>圓形計算器</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+      width: 150px;
+    }
+
+    button {
+      padding: 8px 12px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>圓形面積與周長計算器</h2>
+
+  <label>輸入半徑：</label>
+  <input type="number" id="radius" placeholder="例如 5" />
+
+  <button onclick="calculate()">計算</button>
+
+  <div class="result">
+    <p>面積：<span id="area">-</span></p>
+    <p>周長：<span id="circumference">-</span></p>
+  </div>
+
+  <script>
+    function calculate() {
+      const r = parseFloat(document.getElementById("radius").value);
+
+      if (isNaN(r) || r < 0) {
+        alert("請輸入有效的半徑");
+        return;
+      }
+
+      const area = Math.PI * r * r;
+      const circumference = 2 * Math.PI * r;
+
+      document.getElementById("area").textContent = area.toFixed(2);
+      document.getElementById("circumference").textContent = circumference.toFixed(2);
+    }
+  </script>
+</body>
+</html>
